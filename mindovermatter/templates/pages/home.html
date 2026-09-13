@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="shell hero">
+  <div class="hero-grid">
+    <div>
+      <h1>Psychology, taught by the students learning it.</h1>
+      <p class="lede">We run talks, workshops, and discussions on campuses across Georgia. Attend one, take the quiz, and claim your research credit.</p>
+      <p><a class="btn" href="{% url 'event_list' %}">See what's coming up</a></p>
+    </div>
+
+    <aside class="next-panel">
+      <h2 class="panel-heading">Next session</h2>
+      {% if next_event %}
+        <ul class="scale">{% include "components/event_entry.html" with event=next_event %}</ul>
+      {% else %}
+        <p class="quiet">Nothing scheduled right now. <a href="{% url 'contact' %}">Ask us what's next.</a></p>
+      {% endif %}
+    </aside>
+  </div>
+</section>
+
+{% if upcoming %}
+<section class="shell section">
+  <h2>Also coming up</h2>
+  <ul class="scale">
+    {% for event in upcoming %}{% include "components/event_entry.html" with event=event %}{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section class="shell section">
+  <h2>Where we are</h2>
+  <ul class="chapter-grid">
+    {% for chapter in chapters %}
+      <li>
+        <h3 class="entry-title">{{ chapter.name }}</h3>
+        <p class="entry-meta">{{ chapter.get_kind_display }}</p>
+        <p class="entry-meta">{% if chapter.sona_enabled %}Events here carry SONA credit{% elif chapter.kind == "high_school" %}Talks and discussion, no credit{% else %}Credit not set up yet{% endif %}</p>
+      </li>
+    {% empty %}
+      <li><p class="quiet">Chapters will be listed here once they're set up.</p></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

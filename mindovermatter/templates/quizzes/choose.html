@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Quiz — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Take a quiz</h1>
+  <p class="lede">Pick the one that matches how you're claiming credit.</p>
+</section>
+<section class="shell section">
+  <ul class="pick">
+    <li>
+      <a href="{% url 'quiz_general' %}">
+        <h3>General quiz</h3>
+        <p>The same questions for everyone, covering material from our talks. Start here if your event wasn't run by a specific chapter.</p>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'school_search' %}">
+        <h3>My school's quiz</h3>
+        <p>Find your school and take the quiz set up by your chapter. Use this if your department handles credit its own way.</p>
+      </a>
+    </li>
+  </ul>
+</section>
+{% endblock %}

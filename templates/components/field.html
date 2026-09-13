@@ -1,0 +1,7 @@
+{# Renders one form field identically everywhere. Usage: {% include "components/field.html" with field=form.email %} #}
+<div class="field">
+  {{ field.label_tag }}
+  {{ field }}
+  {% if field.help_text %}<p class="help">{{ field.help_text }}</p>{% endif %}
+  {{ field.errors }}
+</div>

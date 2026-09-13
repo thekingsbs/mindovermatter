@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Psychology, made accessible.</h1>
+  <p class="lede">We run talks, workshops, and events that make psychological
+    science legible — and give you research credit for taking part.</p>
+  {% if next_event %}
+  <div class="hero__next">
+    <p class="muted" style="margin:0">Next up</p>
+    <a href="{% url 'event_detail' next_event.slug %}">{{ next_event.title }}</a>
+    <span class="muted"> — {{ next_event.starts_at|date:"l, M j, g:i A" }}{% if next_event.location %}, {{
+      next_event.location }}{% endif %}</span>
+  </div>
+  {% endif %}
+  <p style="margin-top:var(--space-3)">
+    <a class="btn" href="{% url 'event_list' %}">See events</a>
+    <a class="btn btn--ghost" href="{% url 'quiz_landing' %}">Take a quiz</a>
+  </p>
+</section>
+
+<section class="stack">
+  <div class="section-header">
+    <h2>What we do</h2>
+  </div>
+  <div class="grid grid--2">
+    <div class="card">
+      <h3>Events &amp; talks</h3>
+      <p>Speakers, discussions, and workshops across our chapters — open to
+        anyone curious about how the mind works.</p>
+    </div>
+    <div class="card">
+      <h3>Research credit</h3>
+      <p>Attend an eligible event, pass the quiz, and we log your participation
+        for course credit at your school.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

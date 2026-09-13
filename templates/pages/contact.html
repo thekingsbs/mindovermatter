@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Contact — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>Contact us</h1>
+<p class="lede">Questions, event ideas, or want to bring a chapter to your school? Use our contact form or send us an
+  email at:</p>
+<p class="lede">Arianna ONeal - aoneal32@student.kennessaw.edu</p>
+<p class="lede">Badriya Hampton - bhampt16@student.kennessaw.edu</p>
+<p class="lede">Lauren Taglialatela - Faculty Supervisor - ltaglial@kennessaw.edu</p>
+<form method="post" class="stack">
+  {% csrf_token %}
+  {% include "components/field.html" with field=form.name %}
+  {% include "components/field.html" with field=form.email %}
+  {% include "components/field.html" with field=form.message %}
+  <button class="btn" type="submit">Send message</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Events — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Events</h1>
+  <p class="lede">Talks and workshops across our chapters.</p>
+</section>
+<section class="shell section">
+  <h2>Upcoming</h2>
+  <ul class="scale">
+    {% for event in upcoming %}{% include "components/event_entry.html" with event=event %}
+    {% empty %}<li><p class="quiet">Nothing scheduled right now.</p></li>{% endfor %}
+  </ul>
+</section>
+<section class="shell section">
+  <h2>Past</h2>
+  <ul class="scale">
+    {% for event in past %}{% include "components/event_entry.html" with event=event %}
+    {% empty %}<li><p class="quiet">No past events yet.</p></li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

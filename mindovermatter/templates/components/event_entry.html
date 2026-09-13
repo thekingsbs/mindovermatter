@@ -1,0 +1,10 @@
+<li>
+  <span class="entry-when">{{ event.starts_at|date:"D j M Y, g:i a" }}</span>
+  <h3 class="entry-title"><a href="{% url 'event_detail' event.slug %}">{{ event.title }}</a></h3>
+  {% if event.summary %}<p>{{ event.summary }}</p>{% endif %}
+  <p class="entry-meta">{% spaceless %}
+    {% if event.location %}<span>{{ event.location }}</span>{% endif %}
+    {% if event.chapter %}<span>{% if event.location %}, {% endif %}{{ event.chapter.name }}</span>{% endif %}
+    {% if event.credit_value %}<span>{% if event.location or event.chapter %}. {% endif %}Worth {{ event.credit_value|floatformat }} SONA credit{{ event.credit_value|pluralize }}</span>{% endif %}
+  {% endspaceless %}</p>
+</li>

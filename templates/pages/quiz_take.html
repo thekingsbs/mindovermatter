@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ quiz.title }} — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>{{ quiz.title }}</h1>
+{% if event %}<p class="lede">For {{ event.title }} — {{ event.starts_at|date:"M j, Y" }}</p>{% endif %}
+{% if form.non_field_errors %}<div class="msg msg--error">{{ form.non_field_errors }}</div>{% endif %}
+
+<form method="post" action="{% url 'quiz_take' quiz.id %}{% if event %}?event={{ event.id }}{% endif %}" class="stack">
+  {% csrf_token %}
+  {% if event %}<input type="hidden" name="event" value="{{ event.id }}">{% endif %}
+
+  <div class="section-header"><h2>Your details</h2></div>
+  {% include "components/field.html" with field=form.full_name %}
+  {% include "components/field.html" with field=form.email %}
+  {% include "components/field.html" with field=form.school_identifier %}
+  {% if event and event.attendance_code %}
+    {% include "components/field.html" with field=form.attendance_code %}
+  {% endif %}
+
+  <div class="section-header"><h2>Questions</h2></div>
+  {% for q in quiz.questions.all %}
+    <fieldset class="question" style="border:0;padding:0;margin:0">
+      <legend class="question__prompt">{{ forloop.counter }}. {{ q.prompt }}</legend>
+      {% if q.kind == "short" %}
+        <input type="text" name="q_{{ q.id }}" aria-label="Answer">
+      {% else %}
+        {% for c in q.choices.all %}
+          <label class="option">
+            <input type="{% if q.kind == 'multi' %}checkbox{% else %}radio{% endif %}"
+                   name="q_{{ q.id }}" value="{{ c.id }}">
+            <span>{{ c.text }}</span>
+          </label>
+        {% endfor %}
+      {% endif %}
+    </fieldset>
+  {% endfor %}
+
+  <p style="margin-top:var(--space-3)"><button class="btn" type="submit">Submit quiz</button></p>
+</form>
+{% endblock %}

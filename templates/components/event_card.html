@@ -1,0 +1,6 @@
+<article class="card">
+  <p class="card__meta">{{ event.starts_at|date:"D, M j · g:i A" }}{% if event.chapter %} · {{ event.chapter.name }}{% endif %}</p>
+  <h3><a href="{% url 'event_detail' event.slug %}">{{ event.title }}</a></h3>
+  {% if event.location %}<p class="muted">{{ event.location }}</p>{% endif %}
+  {% if event.credit_value %}<p class="muted">{{ event.credit_value }} credit</p>{% endif %}
+</article>

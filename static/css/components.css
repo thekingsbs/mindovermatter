@@ -1,0 +1,103 @@
+/* ---- Nav ---- */
+.nav {
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(6px);
+}
+.nav__inner { display: flex; align-items: baseline; gap: var(--space-3);
+  padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.nav__brand { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.25rem;
+  color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.nav__links { display: flex; gap: var(--space-3); margin-left: auto; flex-wrap: wrap; }
+.nav__links a { color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--oxblood); }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-block; font: inherit; font-weight: 600; cursor: pointer;
+  padding: .7rem 1.4rem; border-radius: var(--radius);
+  background: var(--oxblood); color: var(--paper); border: 1px solid var(--oxblood);
+  text-decoration: none; transition: background .15s ease;
+}
+.btn:hover { background: var(--oxblood-dark); color: var(--paper); }
+.btn--ghost { background: transparent; color: var(--oxblood); }
+.btn--ghost:hover { background: transparent; color: var(--oxblood-dark);
+  border-color: var(--oxblood-dark); }
+
+/* ---- Hero: the one loud element ---- */
+.hero { padding: var(--space-5) 0 var(--space-4); }
+.hero h1 { max-width: 16ch; }
+.hero__next {
+  margin-top: var(--space-3); padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--oxblood); background: var(--field);
+  border-radius: 0 var(--radius) var(--radius) 0; max-width: var(--measure);
+}
+.hero__next a { font-weight: 600; }
+
+/* ---- Section header ---- */
+.section-header { border-top: 1px solid var(--rule); padding-top: var(--space-2); }
+
+/* ---- Cards / listings ---- */
+.grid { display: grid; gap: var(--space-3); }
+@media (min-width: 720px) { .grid--2 { grid-template-columns: 1fr 1fr; } }
+
+.card {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: var(--space-3); background: var(--field);
+}
+.card h3 { margin-top: 0; }
+.card__meta { color: var(--muted); font-size: .95rem; margin-bottom: var(--space-1); }
+
+/* ---- Quiz option box (general vs school) ---- */
+.picker { display: grid; gap: var(--space-3); max-width: 760px; }
+@media (min-width: 640px) { .picker { grid-template-columns: 1fr 1fr; } }
+.picker__card {
+  display: block; text-decoration: none; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: var(--space-3); background: var(--field); transition: border-color .15s ease;
+}
+.picker__card:hover { border-color: var(--oxblood); color: var(--ink); }
+.picker__card h3 { color: var(--oxblood); }
+
+/* ---- Forms ---- */
+.field { margin-bottom: var(--space-3); max-width: var(--measure); }
+.field label { display: block; font-weight: 600; margin-bottom: var(--space-1); }
+.field input[type=text], .field input[type=email], .field input:not([type]),
+.field textarea, .field select {
+  width: 100%; font: inherit; padding: .6rem .8rem;
+  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--field);
+}
+.field textarea { min-height: 8rem; }
+.field .help { color: var(--muted); font-size: .9rem; margin-top: var(--space-1); }
+.field .errorlist { color: var(--err); list-style: none; padding: 0; margin: var(--space-1) 0 0; }
+
+.question { border-top: 1px solid var(--rule); padding-top: var(--space-3);
+  margin-top: var(--space-3); max-width: var(--measure); }
+.question__prompt { font-weight: 600; margin-bottom: var(--space-2); }
+.option { display: flex; gap: .6rem; align-items: flex-start; margin-bottom: var(--space-1); }
+.option input { margin-top: .35rem; }
+
+/* ---- Messages ---- */
+.msg { padding: var(--space-2) var(--space-3); border-radius: var(--radius);
+  border: 1px solid var(--rule); margin-bottom: var(--space-3); max-width: var(--measure); }
+.msg--success { border-color: var(--ok); color: var(--ok); }
+.msg--error { border-color: var(--err); color: var(--err); }
+
+/* ---- School search ---- */
+.school-search input { width: 100%; max-width: 520px; }
+.school-list { list-style: none; padding: 0; margin: var(--space-2) 0 0; max-width: 520px; }
+.school-list li { border-bottom: 1px solid var(--rule); }
+.school-list a { display: block; padding: .7rem .2rem; text-decoration: none; color: var(--ink); }
+.school-list a:hover { color: var(--oxblood); }
+.school-list li[hidden] { display: none; }
+
+/* ---- Footer ---- */
+.footer { border-top: 1px solid var(--rule); padding: var(--space-4) 0;
+  color: var(--muted); font-size: .95rem; margin-top: var(--space-5); }
+.footer a { color: var(--muted); }
+
+/* ---- Result badge ---- */
+.result { font-family: "Fraunces", serif; font-size: var(--step-3); }
+.result--pass { color: var(--ok); }
+.result--fail { color: var(--oxblood); }

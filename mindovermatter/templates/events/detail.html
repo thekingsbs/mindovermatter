@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }} — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <span class="entry-when">{{ event.starts_at|date:"l j F Y, g:i a" }}</span>
+  <h1>{{ event.title }}</h1>
+  {% if event.summary %}<p class="lede">{{ event.summary }}</p>{% endif %}
+</section>
+<section class="shell section prose">
+  <p class="entry-meta">
+    {% if event.location %}{{ event.location }}{% endif %}
+    {% if event.chapter %}{% if event.location %}, {% endif %}{{ event.chapter.name }}{% else %}Open to every chapter{% endif %}
+  </p>
+  {{ event.description|linebreaks }}
+
+  {% if event.is_credit_bearing %}
+    <h2>Research credit</h2>
+    {% if event.is_past %}
+      <p>This event is worth {{ event.credit_value }} SONA credit{{ event.credit_value|pluralize }}. Take the quiz to claim it. You'll need the attendance code from the end of the session.</p>
+      <p><a class="btn" href="{% url 'take_quiz' event.quiz.pk %}?event={{ event.slug }}">Take the quiz</a></p>
+    {% else %}
+      <p>Worth {{ event.credit_value }} SONA credit{{ event.credit_value|pluralize }}. The quiz opens once the event has finished, and you'll need the attendance code announced at the end.</p>
+    {% endif %}
+  {% endif %}
+</section>
+{% endblock %}

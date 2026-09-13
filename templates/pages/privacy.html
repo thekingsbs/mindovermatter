@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Privacy — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>Privacy</h1>
+<div class="stack">
+  <p class="lede">What we collect and why. Replace this with a reviewed policy
+     before you go live — this is a working draft, not legal text.</p>
+  <p>When you submit a quiz, we collect your name, email, school identifier, and
+     your answers, so we can verify attendance and log participation credit at
+     your school. We keep this only as long as needed to process credit.</p>
+  <p>We do not collect quiz submissions from high school (minor) participants.</p>
+  <p>To ask what we hold about you or to have it deleted, use the
+     <a href="{% url 'contact' %}">contact form</a>.</p>
+</div>
+{% endblock %}

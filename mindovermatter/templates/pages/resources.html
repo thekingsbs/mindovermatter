@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Resources — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Resources</h1>
+  <p class="lede">Reading, slides, and links from our sessions.</p>
+</section>
+<section class="shell section">
+  <ul class="resource-list">
+    {% for r in resources %}
+      <li>
+        <h3 class="entry-title"><a href="{{ r.href }}">{{ r.title }}</a></h3>
+        {% if r.description %}<p>{{ r.description }}</p>{% endif %}
+        {% if r.chapter %}<p class="entry-meta">{{ r.chapter.name }}</p>{% endif %}
+      </li>
+    {% empty %}
+      <li><p class="quiet">Nothing here yet. Resources from past sessions will appear as we publish them.</p></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

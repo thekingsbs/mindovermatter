@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ chapter.name }} — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>{{ chapter.name }}</h1>
+  <p class="lede">{% if chapter.sona_enabled %}Passing quizzes here earn SONA research credit.{% else %}Credit isn't set up at this school yet, but your submission is recorded.{% endif %}</p>
+</section>
+<section class="shell section">
+  <ul class="scale">
+    {% for quiz in quizzes %}
+      <li>
+        <h3 class="entry-title">{{ quiz.title }}</h3>
+        {% if quiz.description %}<p>{{ quiz.description }}</p>{% endif %}
+        <p class="entry-meta">{{ quiz.question_count }} question{{ quiz.question_count|pluralize }}, {{ quiz.pass_threshold }}% to pass</p>
+        <p><a class="btn" href="{% url 'take_quiz' quiz.pk %}">Start quiz</a></p>
+      </li>
+    {% empty %}
+      <li><p class="quiet">No quiz is open for this school right now.</p></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

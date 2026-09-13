@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Submitted — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <div class="{% if submission.passed %}result-pass{% else %}result-fail{% endif %}">
+    <p class="result-score">{{ submission.percentage }}%</p>
+    <h1>{% if submission.passed %}You passed{% else %}Not a passing score{% endif %}</h1>
+    <p class="lede">{{ submission.score }} of {{ submission.total_questions }} correct on {{ submission.quiz.title }}.</p>
+  </div>
+</section>
+<section class="shell section prose">
+  {% if submission.passed %}
+    <p>Your submission is recorded and waiting for an officer to verify it. Credit reaches your account once your department processes the roster, which usually takes a week or two.</p>
+    <p class="quiet">Recorded under {{ submission.chapter.identifier_label }} {{ submission.school_identifier }} at {{ submission.chapter.name }}. If that's wrong, <a href="{% url 'contact' %}">tell us</a> before the roster goes out.</p>
+  {% else %}
+    <p>This score is below the {{ submission.quiz.pass_threshold }}% needed for credit. Your submission is recorded, so <a href="{% url 'contact' %}">get in touch</a> if you think something went wrong.</p>
+  {% endif %}
+  <p><a class="btn btn-quiet" href="{% url 'event_list' %}">See other events</a></p>
+</section>
+{% endblock %}

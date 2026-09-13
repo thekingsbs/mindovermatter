@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Find your school — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>Find your school</h1>
+<p class="lede">Start typing to filter. Don't see yours? Let us know below.</p>
+<div class="school-search stack">
+  <input type="text" data-school-search placeholder="Search schools…"
+         aria-label="Search schools" autocomplete="off">
+  <ul class="school-list">
+    {% for c in chapters %}
+      <li data-name="{{ c.name }}">
+        <a href="{% url 'quiz_for_school' c.slug %}">{{ c.name }}</a>
+      </li>
+    {% empty %}
+      <li class="muted">No schools are open for quizzes yet.</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url 'school_not_listed' %}">My school isn't listed →</a></p>
+</div>
+{% endblock %}
+{% block extra_js %}
+{% load static %}<script src="{% static 'js/school-search.js' %}"></script>
+{% endblock %}

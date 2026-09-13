@@ -1,0 +1,33 @@
+/* Design tokens. Every visual decision lives here; templates only reference
+   these variables. Don't hardcode a color or size in a template. */
+:root {
+  /* Palette: warm paper, deep ink, oxblood accent. Deliberately NOT the
+     cream+terracotta look — oxblood reads academic-humanist, not trendy. */
+  --ink:    #14181f;
+  --paper:  #fbfaf7;
+  --oxblood:#7a2432;
+  --oxblood-dark:#5c1a26;
+  --muted:  #5f6672;
+  --rule:   #e4e0d8;
+  --field:  #ffffff;
+  --ok:     #1f6f54;
+  --err:    #9a2b2b;
+
+  /* Type scale (major third-ish). Five sizes, no improvising a sixth. */
+  --step-0: 1.0625rem;
+  --step-1: 1.35rem;
+  --step-2: 1.85rem;
+  --step-3: 2.6rem;
+  --step-4: 4rem;
+
+  /* Spacing scale. */
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 7rem;
+
+  --measure: 66ch;   /* max text width */
+  --shell:   1120px; /* max page width */
+  --radius:  6px;
+}

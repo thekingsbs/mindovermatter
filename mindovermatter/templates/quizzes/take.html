@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ quiz.title }} — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>{{ quiz.title }}</h1>
+  <p class="lede">{{ chapter.name }}{% if event %}, {{ event.title }}{% endif %}</p>
+  <p class="quiet">{{ form.questions|length }} question{{ form.questions|length|pluralize }}. You need {{ quiz.pass_threshold }}% to pass{% if not quiz.allow_retake %}, and you can only submit once{% endif %}.</p>
+</section>
+
+<section class="shell section">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% if event %}<input type="hidden" name="event" value="{{ event.slug }}">{% endif %}
+    {% if quiz.scope == "general" %}<input type="hidden" name="school" value="{{ chapter.slug }}">{% endif %}
+
+    {% if form.non_field_errors %}
+      <div class="form-errors">{% for e in form.non_field_errors %}<p>{{ e }}</p>{% endfor %}</div>
+    {% endif %}
+
+    <h2>You</h2>
+    {% include "components/field.html" with field=form.full_name %}
+    {% include "components/field.html" with field=form.email %}
+    {% include "components/field.html" with field=form.school_identifier %}
+    {% if form.attendance_code %}{% include "components/field.html" with field=form.attendance_code %}{% endif %}
+
+    <h2>Questions</h2>
+    <ul class="questions">
+      {% for question, field in form.question_fields %}
+        <li>{% include "components/field.html" with field=field %}</li>
+      {% endfor %}
+    </ul>
+
+    <button class="btn" type="submit">Submit answers</button>
+  </form>
+</section>
+{% endblock %}

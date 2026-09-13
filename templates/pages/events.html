@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Events — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>Events</h1>
+<div class="section-header"><h2>Upcoming</h2></div>
+{% if upcoming %}
+  <div class="grid grid--2">
+    {% for e in upcoming %}{% include "components/event_card.html" with event=e %}{% endfor %}
+  </div>
+{% else %}
+  <p class="muted">Nothing scheduled yet — check back soon.</p>
+{% endif %}
+
+<div class="section-header"><h2>Past</h2></div>
+{% if past %}
+  <div class="grid grid--2">
+    {% for e in past %}{% include "components/event_card.html" with event=e %}{% endfor %}
+  </div>
+{% else %}
+  <p class="muted">No past events yet.</p>
+{% endif %}
+{% endblock %}

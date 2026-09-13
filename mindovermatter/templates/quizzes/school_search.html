@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Find your school — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Find your school</h1>
+  <p class="lede">Start typing to narrow the list.</p>
+</section>
+<section class="shell section">
+  <div class="field">
+    <label for="school-filter">School</label>
+    <input type="search" id="school-filter" autocomplete="off" placeholder="Georgia Tech">
+  </div>
+  <ul class="school-list" id="school-list">
+    {% for c in chapters %}
+      <li data-name="{{ c.name|lower }}">
+        <a href="{% url 'school_quizzes' c.slug %}">{{ c.name }}
+          <span class="kind">{% if c.sona_enabled %}SONA credit available{% else %}No SONA credit yet{% endif %}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="no-results" id="no-results" hidden>No school by that name. Tell us about yours below.</p>
+
+  <h2>School not listed?</h2>
+  <p>Leave your details and we'll get in touch when a chapter starts there.</p>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}{% include "components/field.html" with field=field %}{% endfor %}
+    <button class="btn" type="submit">Tell us about your school</button>
+  </form>
+</section>
+
+<script>
+(function () {
+  var input = document.getElementById('school-filter');
+  var items = Array.prototype.slice.call(
+    document.querySelectorAll('#school-list li')
+  );
+  var empty = document.getElementById('no-results');
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function (li) {
+      var match = li.dataset.name.indexOf(q) !== -1;
+      li.hidden = !match;
+      if (match) shown++;
+    });
+    empty.hidden = shown !== 0;
+  });
+})();
+</script>
+{% endblock %}

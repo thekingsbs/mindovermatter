@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Privacy — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Privacy</h1>
+  <p class="lede">What we collect, why, and how long we keep it.</p>
+</section>
+<section class="shell section prose">
+  <h2>What we collect</h2>
+  <p>When you submit a quiz we store your name, email address, school identifier, your answers, and your score. We collect this only to route research credit to the right account.</p>
+
+  <h2>Who sees it</h2>
+  <p>Chapter officers at your own school, and the participant pool coordinator in your psychology department when credit is granted. Officers at other chapters cannot see your submission.</p>
+
+  <h2>How long we keep it</h2>
+  <p>Submissions are deleted at the end of the academic year after credit has been granted.</p>
+
+  <h2>High school students</h2>
+  <p>We do not collect quiz submissions or personal information from students at our high school chapters.</p>
+
+  <h2>Removing your data</h2>
+  <p>Email us through the <a href="{% url 'contact' %}">contact page</a> and we'll delete your submission.</p>
+
+  <p class="quiet">This page is a starting point written for a student organization. Have someone at your school review it before you launch.</p>
+</section>
+{% endblock %}

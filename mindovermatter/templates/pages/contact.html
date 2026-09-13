@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Contact — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>Contact us</h1>
+  <p class="lede">Questions about credit, starting a chapter, or speaking at a session.</p>
+</section>
+<section class="shell section">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}{% include "components/field.html" with field=field %}{% endfor %}
+    <button class="btn" type="submit">Send message</button>
+  </form>
+</section>
+{% endblock %}

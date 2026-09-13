@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }} — Mind Over Matter{% endblock %}
+{% block content %}
+<p class="card__meta">{{ event.starts_at|date:"l, F j, Y · g:i A" }}{% if event.chapter %} · {{ event.chapter.name }}{% endif %}</p>
+<h1>{{ event.title }}</h1>
+{% if event.location %}<p class="lede">{{ event.location }}</p>{% endif %}
+<div class="stack">
+  {% if event.description %}<p>{{ event.description|linebreaksbr }}</p>{% endif %}
+  {% if event.quiz %}
+    <div class="hero__next">
+      <p style="margin:0">Attended this event? Take the quiz for credit.</p>
+      <a class="btn" style="margin-top:var(--space-2)" href="{% url 'quiz_take' event.quiz.id %}?event={{ event.id }}">Start quiz</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

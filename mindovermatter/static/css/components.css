@@ -1,0 +1,280 @@
+/* ---- nav ---- */
+.nav {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.nav-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+  flex-wrap: wrap;
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+.nav-links a { color: var(--ink); text-decoration: none; padding-bottom: 2px; }
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  border-bottom: 2px solid var(--accent);
+}
+
+/* ---- hero ---- */
+.hero { padding: var(--space-4) 0 var(--space-3); }
+.hero h1 { max-width: 16ch; }
+.hero .lede { max-width: 48ch; margin-top: var(--space-2); }
+
+/* ---- scale: the recurring device ----
+   A graduated axis. Used only where content is a real sequence
+   or a real degree, never as decoration. */
+.scale {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid var(--rule);
+  max-width: none;
+}
+.scale > li {
+  position: relative;
+  padding: var(--space-3) 0 var(--space-3) var(--space-3);
+  margin: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.scale > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-3) + 0.6em);
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+.scale > li:last-child { border-bottom: 0; }
+
+.entry-when {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.entry-title { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.entry-title a { color: var(--ink); text-decoration: none; }
+.entry-title a:hover { color: var(--accent); text-decoration: underline; }
+.entry-meta { color: var(--muted); font-size: 0.95rem; }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.7em 1.3em;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: #24408c; border-color: #24408c; }
+.btn-quiet { background: transparent; color: var(--accent); }
+.btn-quiet:hover { background: var(--accent-dim); color: var(--ink); }
+
+/* ---- pick: the two-option quiz box ---- */
+.pick {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  max-width: none;
+  list-style: none;
+  padding: 0;
+}
+.pick > li { margin: 0; }
+.pick a {
+  display: block;
+  height: 100%;
+  padding: var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.pick a:hover { border-color: var(--accent); }
+.pick h3 { margin-bottom: 0.4rem; }
+.pick p { color: var(--muted); margin: 0; font-size: 0.98rem; }
+
+/* ---- forms ---- */
+.field { margin-bottom: var(--space-3); max-width: 34rem; }
+.field > label,
+.field > .field-label {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.4rem;
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="search"],
+.field select,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.6em 0.7em;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+.field .help { color: var(--muted); font-size: 0.92rem; margin: 0.35rem 0 0; }
+.field .errors { color: var(--warn); font-size: 0.94rem; margin: 0.35rem 0 0; list-style: none; padding: 0; }
+.field ul { list-style: none; padding: 0; margin: 0; }
+.field ul li { margin-bottom: 0.3rem; }
+.field input[type="radio"], .field input[type="checkbox"] { margin-right: 0.5rem; }
+
+.form-errors {
+  border-left: 3px solid var(--warn);
+  padding: var(--space-2);
+  margin-bottom: var(--space-3);
+  background: var(--card);
+  color: var(--warn);
+  max-width: 34rem;
+}
+.notice {
+  border-left: 3px solid var(--accent);
+  padding: var(--space-2);
+  margin-bottom: var(--space-3);
+  background: var(--card);
+  max-width: 34rem;
+}
+
+/* ---- quiz questions: numbered because they are a sequence ---- */
+.questions { list-style: none; padding: 0; counter-reset: q; max-width: none; }
+.questions > li {
+  counter-increment: q;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+.questions > li::before {
+  content: counter(q);
+  display: block;
+  font-family: var(--display);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.questions .field { margin-bottom: 0; max-width: var(--measure); }
+
+/* ---- result ---- */
+.result-score {
+  font-family: var(--display);
+  font-size: var(--step-4);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.result-pass { border-left: 4px solid var(--mark); padding-left: var(--space-2); }
+.result-fail { border-left: 4px solid var(--rule); padding-left: var(--space-2); }
+
+/* ---- school search ---- */
+.school-list { list-style: none; padding: 0; margin: var(--space-2) 0 0; max-width: 34rem; }
+.school-list li { border-bottom: 1px solid var(--rule); margin: 0; }
+.school-list a {
+  display: block;
+  padding: 0.85em 0;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--display);
+}
+.school-list a:hover { color: var(--accent); }
+.school-list .kind { color: var(--muted); font-size: 0.9rem; font-family: var(--body); }
+.no-results { color: var(--muted); padding: var(--space-2) 0; }
+
+/* ---- resources ---- */
+.resource-list { list-style: none; padding: 0; max-width: none; }
+.resource-list > li {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+  margin: 0;
+  max-width: var(--measure);
+}
+
+/* ---- footer ---- */
+.footer {
+  border-top: 1px solid var(--rule);
+  margin-top: var(--space-5);
+  padding: var(--space-3) 0 var(--space-4);
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+.footer a { color: var(--muted); }
+.footer-links { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-1); }
+
+/* ---- home hero: headline left, the next session right ---- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+.hero-grid h1 { max-width: 15ch; }
+.hero-grid .lede { max-width: 40ch; }
+
+.next-panel { border-top: 2px solid var(--ink); padding-top: var(--space-2); }
+.panel-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-bottom: var(--space-2);
+}
+.next-panel .scale { border-left: 0; }
+.next-panel .scale > li {
+  padding: 0 0 0 var(--space-3);
+  border-bottom: 0;
+}
+.next-panel .scale > li::before { top: 0.6em; }
+
+@media (max-width: 56rem) {
+  .hero-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+  .hero-grid h1, .hero-grid .lede { max-width: var(--measure); }
+}
+
+/* ---- chapter grid ---- */
+.chapter-grid {
+  list-style: none;
+  padding: 0;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-3);
+}
+.chapter-grid > li {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-2);
+}
+.chapter-grid .entry-meta { margin-bottom: 0.2rem; }
+
+/* tighten the run-in to the footer */
+.footer { margin-top: var(--space-4); }

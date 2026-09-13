@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Submitted — Mind Over Matter{% endblock %}
+{% block content %}
+<h1>Submitted</h1>
+<p class="result {% if submission.passed %}result--pass{% else %}result--fail{% endif %}">
+  {{ submission.score }}%
+</p>
+{% if submission.passed %}
+  <p class="lede">You passed. We've recorded your submission — an officer will
+     verify it before credit is sent to your school.</p>
+{% else %}
+  <p class="lede">That's below the passing mark this time. Your submission is
+     recorded either way.</p>
+{% endif %}
+<p><a class="btn btn--ghost" href="{% url 'home' %}">Back home</a></p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}About — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>About us</h1>
+  <p class="lede">Mind Over Matter is a student-run organization that makes psychology research legible to the people it's about.</p>
+</section>
+
+<section class="shell section prose">
+  <h2>What we do</h2>
+  <p>We host talks, panels, and workshops on psychology and the research behind it. Sessions are led by students, faculty guests, and researchers who are happy to explain their work to a room that isn't full of specialists.</p>
+
+  <h2>Research credit</h2>
+  <p>At campuses where we're approved, attending an event and passing a short quiz earns SONA research credit. The quiz opens after the event and asks for the attendance code announced at the end of the session. Credit reaches your account after an officer verifies your submission.</p>
+
+  <h2>High school chapters</h2>
+  <p>Our high school chapters run talks and discussion sessions only. We don't collect quiz submissions or personal information from high school students, and no credit is attached to those events.</p>
+
+  <h2>Get involved</h2>
+  <p>We're always looking for speakers, chapter officers, and schools that want to start a chapter. <a href="{% url 'contact' %}">Send us a message</a>.</p>
+</section>
+{% endblock %}

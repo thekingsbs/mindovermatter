@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}General quiz — Mind Over Matter{% endblock %}
+{% block content %}
+<section class="shell hero">
+  <h1>General quiz</h1>
+  <p class="lede">Choose your school so credit reaches the right department, then pick a quiz.</p>
+</section>
+<section class="shell section">
+  {% for quiz in quizzes %}
+    <form method="get" action="{% url 'take_quiz' quiz.pk %}">
+      <h3>{{ quiz.title }}</h3>
+      {% if quiz.description %}<p>{{ quiz.description }}</p>{% endif %}
+      <div class="field">
+        <label for="school-{{ quiz.pk }}">Your school</label>
+        <select name="school" id="school-{{ quiz.pk }}" required>
+          <option value="">Choose a school</option>
+          {% for c in chapters %}<option value="{{ c.slug }}">{{ c.name }}</option>{% endfor %}
+        </select>
+      </div>
+      <button class="btn" type="submit">Start quiz</button>
+    </form>
+  {% empty %}
+    <p class="quiet">No general quiz is open right now. <a href="{% url 'school_search' %}">Try your school's quiz</a> instead.</p>
+  {% endfor %}
+</section>
+{% endblock %}
