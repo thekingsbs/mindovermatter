@@ -10,7 +10,7 @@ from .models import Chapter, Event, Quiz, SchoolRequest
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=200)
+    name = forms.CharField(max_length=200,required=False)
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
 
