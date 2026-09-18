@@ -26,7 +26,7 @@ class QuizSubmissionForm(forms.Form):
     separately from the POST in the view (their fields are dynamic), then scored
     by services.score_submission. This form guards the gate; it does not grade.
     """
-    full_name = forms.CharField(max_length=200)
+    full_name = forms.CharField(max_length=200, required=False)
     email = forms.EmailField()
     school_identifier = forms.CharField(max_length=100)
     attendance_code = forms.CharField(max_length=40, required=False)
