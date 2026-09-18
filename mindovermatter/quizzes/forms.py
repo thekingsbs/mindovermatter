@@ -17,7 +17,7 @@ class QuizSubmissionForm(forms.Form):
     score, not the chapter, not the question set.
     """
 
-    full_name = forms.CharField(max_length=160, label="Full name")
+    full_name = forms.CharField(max_length=160, required=False, label="Full name")
     email = forms.EmailField(label="Email")
     school_identifier = forms.CharField(max_length=60)
     attendance_code = forms.CharField(max_length=40, required=False)
