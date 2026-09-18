@@ -87,7 +87,7 @@ class Submission(models.Model):
     )
     chapter = models.ForeignKey("core.Chapter", on_delete=models.PROTECT, related_name="submissions")
 
-    full_name = models.CharField(max_length=160)
+    full_name = models.CharField(max_length=160, blank=True)
     email = models.EmailField()
     school_identifier = models.CharField(max_length=60)
 
